@@ -1,4 +1,4 @@
 MyFirst
 =======
 
-A web app for chronicling life's "firsts."
+Java EE web app for chronicling life's "firsts."
