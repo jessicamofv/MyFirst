@@ -10,6 +10,7 @@ import javax.transaction.NotSupportedException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
+import my_first.entities.MyFirstPage;
 import my_first.entities.MyFirstUser;
 
 /**
@@ -19,6 +20,7 @@ import my_first.entities.MyFirstUser;
 public class MyFirstDBManager
 {
     public static final String USER_COUNT_QUERY = "SELECT Count(*) FROM MYFIRSTUSER";
+    public static final String PAGE_COUNT_QUERY = "SELECT Count(*) FROM MYFIRSTPAGE";
     
     private MyFirstManager manager;
 
@@ -41,7 +43,31 @@ public class MyFirstDBManager
         else
             return foundUsers.get(0);
     }
-
+    
+    public int getNewestPageNumber(MyFirstUser currentUser) {
+        EntityManager em = manager.getEntityManager();
+        TypedQuery<MyFirstPage> query = em.createNamedQuery("MyFirstPage.findAll", MyFirstPage.class);
+        
+        List<MyFirstPage> foundPages = query.getResultList();
+        
+        if (foundPages.isEmpty())
+            return 1;
+        else
+        {
+            int max = foundPages.get(0).getPageNumber();
+            int nextPageNumber = 2;
+            
+            for (int i = 1; i < foundPages.size(); i++)
+            {
+                nextPageNumber = foundPages.get(i).getPageNumber();
+                if (nextPageNumber >= max)
+                    max = nextPageNumber;
+            }
+            
+            return nextPageNumber;
+        }
+    }
+    
     public int generateNewUserId()
     {
         EntityManager em = manager.getEntityManager();
@@ -52,6 +78,16 @@ public class MyFirstDBManager
         return count+1;          
     }
 
+    public int generateNewPageId()
+    {
+        EntityManager em = manager.getEntityManager();
+        Query countQuery = em.createNativeQuery(PAGE_COUNT_QUERY);
+        
+        int count = (Integer)countQuery.getResultList().get(0); 
+        
+        return count+1;  
+    }
+    
     public void saveEntity(Object entityToSave)
     {
         EntityManager em = manager.getEntityManager();

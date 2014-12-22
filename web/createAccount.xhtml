@@ -20,35 +20,35 @@
             </div>
         <h:form class="form-horizontal" id="createAccount">
             <div class="form-group">
-                <label for="fname" class="col-xs-3 col-sm-push-1 control-label">First Name: </label>
+                <h:outputLabel class="col-xs-3 col-sm-push-1 control-label" value="First Name: " for="fname"/>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-9 col-sm-push-1">
                   <h:inputText class="form-control" id="fname" requiredMessage="*" value="#{myFirstManager.userManager.fname}" required="true"/>
                   <h:message for="createAccount:fname" style="color: red"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="lname" class="col-xs-3 col-sm-push-1 control-label">Last Name: </label>
+                <h:outputLabel class="col-xs-3 col-sm-push-1 control-label" value="Last Name: " for="lname"/>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-9 col-sm-push-1">
                   <h:inputText class="form-control" id="lname" requiredMessage="*" value="#{myFirstManager.userManager.lname}" required="true"/>
                   <h:message for="createAccount:lname" style="color: red"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="username" class="col-xs-3 col-sm-push-1 control-label">Username: </label>
+                <h:outputLabel class="col-xs-3 col-sm-push-1 control-label" value="Username: " for="username"/>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-9 col-sm-push-1">
                   <h:inputText class="form-control" id="username" requiredMessage="*" value="#{myFirstManager.userManager.username}" required="true"/>
                   <h:message for="createAccount:username" style="color: red"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="password" class="col-xs-3 col-sm-push-1 control-label">Password: </label>
+                <h:outputLabel class="col-xs-3 col-sm-push-1 control-label" value="Password: " for="password"/>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-9 col-sm-push-1">
                   <h:inputSecret class="form-control" id="password" requiredMessage="*" value="#{myFirstManager.userManager.password}" required="true"/>
                   <h:message for="createAccount:password" style="color: red"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="passwordc" class="col-xs-3 col-sm-push-1 control-label">Password (confirm): </label>
+                <h:outputLabel class="col-xs-3 col-sm-push-1 control-label" value="Password (confirm): " for="passwordc"/>
                 <div class="col-lg-3 col-md-4 col-sm-5 col-xs-9 col-sm-push-1">
                   <h:inputSecret class="form-control" id="passwordc" requiredMessage="*" value="#{myFirstManager.userManager.passwordc}" required="true"/>
                   <h:message for="createAccount:passwordc" style="color: red"/>

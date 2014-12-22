@@ -94,6 +94,7 @@ public class MyFirstUserManager {
             }
             
             context.getExternalContext().getSessionMap().put(USER_SESSION_KEY, user);
+            manager.getAlbumManager().setCurrentUser(user);
             return "album";
         } else {           
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
