@@ -11,10 +11,23 @@
         <h:outputStylesheet library="css" name="bootstrap.min.css" />
         <h:outputStylesheet library="css" name="Album.css" />
         <h:outputScript library="js" name="bootstrap.min.js" />
+        <h:outputScript library="js" name="newPage.js" />
     </h:head>
     <h:body>
         <ui:composition>
-        
+            <div class="container">
+                <h:form class="form-horizontal" id="upForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="col-xs-8 col-sm-offset-4 col-xs-offset-3">
+                            <h:inputFile id="file" value="#{myFirstManager.albumManager.filePart}"/>
+                            <h:commandButton type="submit" class="btn btn-default" id="upload" value="Upload Picture" action="#{myFirstManager.albumManager.upload}" onclick="return validateUpload()">
+                                <f:ajax execute="file" render="@all"/>
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
         </ui:composition>
     </h:body>
 </html>
+

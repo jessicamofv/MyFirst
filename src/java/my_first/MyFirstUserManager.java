@@ -75,10 +75,10 @@ public class MyFirstUserManager {
      * <p>Validates the user.  If the user doesn't exist or the password
      * is incorrect, the appropriate message is added to the current
      * <code>FacesContext</code>.  If the user successfully authenticates,
-     * navigate them to the page referenced by the outcome <code>album</code>.
+     * navigate them to the page referenced by the outcome <code>home</code>.
      * </p>
      *
-     * @return <code>album</code> if the user authenticates, otherwise
+     * @return <code>home</code> if the user authenticates, otherwise
      *  returns <code>null</code>
      */
     public String validateUser() {   
@@ -95,7 +95,7 @@ public class MyFirstUserManager {
             
             context.getExternalContext().getSessionMap().put(USER_SESSION_KEY, user);
             manager.getAlbumManager().setCurrentUser(user);
-            return "album";
+            return "home";
         } else {           
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Login failed!",
