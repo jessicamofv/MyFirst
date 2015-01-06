@@ -44,10 +44,43 @@ public class MyFirstDBManager
             return foundUsers.get(0);
     }
     
-    public int getNewestPageNumber(MyFirstUser currentUser) {
+    public MyFirstPage getPageByPageNumber(MyFirstUser currentUser, int currentPageNum)
+    {
+        EntityManager em = manager.getEntityManager();
+        TypedQuery<MyFirstPage> query = em.createNamedQuery("MyFirstPage.findByPageNubmber", MyFirstPage.class);
+        
+        query.setParameter("userId", currentUser);
+        query.setParameter("pageNumber", currentPageNum);
+        
+        List<MyFirstPage> foundPages = query.getResultList();
+        
+        if (foundPages.isEmpty())
+            return null;
+        else
+            return foundPages.get(0);
+    }
+    
+    public List<MyFirstPage> getUserPages(MyFirstUser currentUser)
+    {
         EntityManager em = manager.getEntityManager();
         TypedQuery<MyFirstPage> query = em.createNamedQuery("MyFirstPage.findAll", MyFirstPage.class);
         
+        query.setParameter("userId", currentUser);
+        
+        List<MyFirstPage> foundPages = query.getResultList();
+        
+        if (foundPages.isEmpty())
+            return null;
+        else
+            return foundPages;
+    }
+    
+    /*public int getNewestPageNumber(MyFirstUser currentUser) {
+        EntityManager em = manager.getEntityManager();
+        TypedQuery<MyFirstPage> query = em.createNamedQuery("MyFirstPage.findAll", MyFirstPage.class);
+        
+        query.setParameter("userId", currentUser);
+    
         List<MyFirstPage> foundPages = query.getResultList();
         
         if (foundPages.isEmpty())
@@ -67,6 +100,7 @@ public class MyFirstDBManager
             return nextPageNumber;
         }
     }
+    */
     
     public int generateNewUserId()
     {
